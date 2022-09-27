@@ -110,4 +110,5 @@ if __name__ == "__main__":
     administrateur_infos = administrateur.display_information()
     for a, b in administrateur_infos.items():
         print(a, " :", b)
+    print(type(administrateur_infos))
     
