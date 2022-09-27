@@ -1,44 +1,44 @@
 
 class Workers:
+    """ Classe travailleur """
     def __init__(self):
+        """ Constructeur d'un travailleur """
         print("Bienvenu au sein de notre établissement de formation !")
         print()
         self.first_name = self.get_first_name()
         self.last_name = self.get_last_name()
+        self.date_of_birth = self.get_date_of_birth()
+        self.place_of_birth = self.get_place_of_birth()
         self.sex = self.get_sex()
-        self.birthday = self.get_birthday()
+        self.nationality = self.get_nationality()
         self.address = self.get_address()
 
     def get_first_name(self):
-        self.first_name = input("Quel est votre nom ? ")
-        if self.first_name == "":
-            print("Veillez entrer un nom !")
-            self.get_first_name()
+        self.first_name = input("Nom : ")
         return self.first_name.upper()
 
     def get_last_name(self):
-        self.last_name = input("Quel est votre prénom ? ")
-        if self.last_name == "":
-            print("Veillez entrer un prénom !")
-            self.get_last_name()
+        self.last_name = input("Prénom : ")
         return self.last_name.title()
 
+    def get_date_of_birth(self):
+        self.date_of_birth = input("Date de naissance (DD/MM/YYYY) : ")
+        return self.date_of_birth
+
+    def get_place_of_birth(self):
+        self.place_of_birth = input("Lieu de naissance : ")
+        return self.place_of_birth
+
     def get_sex(self):
-        self.sex = input("Quel est votre sex (H ou F) ? ")
-        if self.sex.upper() != "H" and self.sex.upper() != "F":
-            print("Veillez répondre par H ou F !")
-            self.get_sex()
+        self.sex = input("Sex (H ou F) : ")
         return self.sex.upper()
-    
-    def get_birthday(self):
-        self.birthday = input("Quel est votre date de naissance (DD/MM/YYYY) ? ")
-        return self.birthday
+
+    def get_nationality(self):
+        self.nationality = input("Nationalité : ")
+        return self.nationality
             
     def get_address(self):
-        self.address = input("Quelle est votre adresse ? ")
-        if self.address == "":
-            print("Veillez entrer votre adresse actuelle !")
-            self.get_address()
+        self.address = input("Adresse : ")
         return self.address
 
 class Administration(Workers):
@@ -54,8 +54,26 @@ class Teacher(Workers):
 class Student(Workers):
     def __init__(self):
         super().__init__()
-        matricule
-        filière
+        self.department = self.get_department()
+        self.section = self.get_section()
+        self.cycle = self.get_cycle()
+        self.level_of_study = self.get_level_of_study()
+
+    def get_department(self):
+        self.department = input("Département : ")
+        return self.department
+
+    def get_section(self):
+        self.section = input("Section : ")
+        return self.section
+
+    def get_cycle(self):
+        self.cycle = input("Cycle : ")
+        return self.cycle
+
+    def get_level_of_study(self):
+        self.level_of_study = input("Level of study : ")
+        return self.level_of_study
 
 
 class Maintenance(Workers):
@@ -64,6 +82,5 @@ class Maintenance(Workers):
 
 
 if __name__ == "__main__":
-    worker = Workers()
-    worker
-    print(worker.first_name, worker.last_name)
+    student = Student()
+    student
