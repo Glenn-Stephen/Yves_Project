@@ -1,8 +1,6 @@
 
 class Workers:
     def __init__(self):
-        print("Bienvenu au sein de notre établissement de formation !")
-        print()
         self.information = {}
         self.get_first_name()
         self.get_last_name()

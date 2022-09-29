@@ -1,3 +1,5 @@
+import json
+
 import toutes_les_classes
 
 
@@ -6,48 +8,64 @@ def display_data_base(data_base):
         print(a, " :", b)
 
 
-def add_worker(complete_name):
-    if complete_name not in data_base:
-        worker = type_worker()
-        print()
-        if worker == "Administration":
-            worker_administration = app.Administration()
-            worker_administration_infos = worker_administration.display_information()
-            data_base[complete_name] = worker_administration_infos
-        elif worker == "Enseignant":
-            worker_teacher = app.Teacher()
-            worker_teacher_infos = worker_teacher.display_information()
-            data_base[complete_name] = worker_teacher_infos
-        elif worker == "Etudiant":
-            worker_student = app.Student()
-            worker_student_infos = worker_student.display_information()
-            data_base[complete_name] = worker_student_infos
-        elif worker == "Entretien":
-            worker_maintenance = app.Maintenance()
-            worker_maintenance_infos = worker_maintenance.display_information()
-            data_base[complete_name] = worker_maintenance_infos
-    else:
-        print(f"{complete_name} existe déjà dans la base de données !")
+def add_worker(number, data_base):
+    matricule = ""
+    while matricule == "":
+        matricule = input("Créer le matricule du travailleur : ")
+        if matricule in data_base:
+            print(f"Le matricule {matricule} existe déjà dans la base de données !")
+            matricule = ""
 
+    if number == "1":
+        worker_administration = toutes_les_classes.Administration()
+        worker_administration_infos = worker_administration.display_information()
+        data_base[matricule] = worker_administration_infos
+    elif number == "2":
+        worker_teacher = toutes_les_classes.Teacher()
+        worker_teacher_infos = worker_teacher.display_information()
+        data_base[matricule] = worker_teacher_infos
+    elif number == "3":
+        worker_student = toutes_les_classes.Student()
+        worker_student_infos = worker_student.display_information()
+        data_base[matricule] = worker_student_infos
+    elif number == "4":
+        worker_maintenance = toutes_les_classes.Maintenance()
+        worker_maintenance_infos = worker_maintenance.display_information()
+        data_base[matricule] = worker_maintenance_infos
+        
 
-def remove_worker(complete_name):
-    if complete_name not in data_base:
-        print(f"{complete_name} n'existe pas dans la base de données !")
-    else:
-        del data_base[complete_name]
-        print(f"{complete_name} a été supprimé de la base de données.")
+def remove_worker(data_base):
+    matricule = ""
+    while matricule == "":
+        matricule = input("Entrer le matricule du travailleur à supprimer : ")
+        if matricule not in data_base:
+            print(f"Le matricule {matricule} n'existe pas dans la base de données !")
+            matricule = ""
+            print()
+        else:
+            del data_base[matricule]
+            print(f"Le matricule {matricule} a été supprimé de la base de données.")
 
 
 def save_data_base(chemin, data_base):
     with open(chemin, "w", encoding='utf-8') as f:
         json.dump(data_base, f, indent=4)
+        print("Les données ont bien été sauvergardé.")
 
 
 def type_worker():
-    worker = input("Quel travailleur voulez-vous ajouter (Administration, Enseignant, Etudiant, Entretien) ? ")
-    liste_worker = ["Administration", "Enseignant", "Etudiant", "Entretien"]
-    if worker.capitalize() not in liste_worker:
-        print("Veillez choisir un travailleur parmit la liste entre parenthèse !")
+    worker = input("""
+    Quel travailleur voulez-vous ajouter ?
+    
+    1. Administration
+    2. Enseignant
+    3. Etudiant
+    4. Entretien
+    
+    Votre choix : """)
+    liste_worker = ["1", "2", "3", "4"]
+    if worker not in liste_worker:
+        print("Veillez entrer un numéro correspondant à un travail !")
         type_worker()
-    return worker.capitalize()
+    return worker
 
