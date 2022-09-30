@@ -1,5 +1,6 @@
 import json
 import sys
+import os
 
 
 class Workers:
@@ -222,11 +223,14 @@ if __name__ == "__main__":
     """Cette condition permet de ne pas exécuter le script lorsque le fichier
     est importer comme module pour utiliser l'une de ces classes ou fonctions"""
 
-    # Cette variable doit contenir le chemin vers la base de données
-    chemin = r"C:\Users\Glenn\Script_Yves\projet_python\Data_base.json"
+    # Cette variable donne le chemin vers le dossier dans lequel est contenu le fichier main.py
+    CUR_DIR = os.path.dirname(__file__)
+
+    # Cette variable contient le chemin vers la base de données
+    DATA_FILE = os.path.join(CUR_DIR, "Data_base.json")
 
     # Lecture des informations contenu dans la base de données
-    with open(chemin, "r", encoding='utf-8') as f:
+    with open(DATA_FILE, "r", encoding='utf-8') as f:
         data_base = json.load(f)
 
     print("Bienvenu au sein de notre établissement de formation !")
@@ -257,5 +261,5 @@ Votre réponse : """)
         elif choice == "3":
             remove_worker(data_base)
         elif choice == "4":
-            save_data_base(chemin, data_base)
+            save_data_base(DATA_FILE, data_base)
             sys.exit()
