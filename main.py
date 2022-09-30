@@ -240,14 +240,14 @@ if __name__ == "__main__":
         choice = ""
         while choice == "":
             choice = input("""
-Que voulez-vous faire ?
+    Que voulez-vous faire ?
 
-1. Afficher les informations des travailleurs
-2. Ajouter un travailleur
-3. Supprimer un travailleur
-4. Sauvegarder et quitter
+    1. Afficher les informations des travailleurs
+    2. Ajouter un travailleur
+    3. Supprimer un travailleur
+    4. Sauvegarder et quitter
 
-Votre réponse : """)
+    Votre réponse : """)
             choice_number = ["1", "2", "3", "4"]
             if choice not in choice_number:
                 print("Veillez choisir une option valide !")
