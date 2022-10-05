@@ -161,6 +161,9 @@ def add_worker(number, data_base):
         if matricule in data_base:
             print(f"Le matricule {matricule} existe déjà dans la base de données !")
             matricule = ""
+        elif len(matricule) > 4 or not matricule.isdigit():
+            print("Veillez entrer un matricule de quatre chiffres !")
+            matricule = ""
 
     if number == "1":
         worker_administration = Administration()
